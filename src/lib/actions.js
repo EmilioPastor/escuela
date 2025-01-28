@@ -51,3 +51,48 @@ export async function eliminarGrupo(formData){
     });
     revalidatePath('/grupos');
 }
+//--------------------------estudiantes------------------------------------
+export async function insertarEstudiante(formData){
+    const nombre = formData.get('nombre');
+    const fecha_nacimiento = formData.get('fecha_nacimiento');
+    const foto = formData.get('foto');
+    const tutor_legal = formData.get('tutor_legal');
+    await prisma.estudiante.create({
+        data: {
+            nombre:nombre, 
+            fecha_nacimiento: fecha_nacimiento,
+            foto: foto,
+            tutor_legal: tutor_legal
+        }
+    });
+    revalidatePath('/estudiantes');
+}
+
+export async function modificarEstudiante(formData){
+    const id = Number(formData.get('id'));
+    const fecha_nacimiento = formData.get('fecha_nacimiento');
+    const foto = formData.get('foto');
+    const tutor_legal = formData.get('tutor_legal');
+    await prisma.estudiante.update({
+        where:{
+            id: id
+        },
+        data: {
+            nombre:nombre, 
+            fecha_nacimiento: fecha_nacimiento,
+            foto: foto,
+            tutor_legal: tutor_legal
+        }
+    });
+    revalidatePath('/estudiantes');
+}
+
+export async function eliminarEstudiante(formData){
+    const id = Number(formData.get('id'))
+    await prisma.estudiante.delete({
+        where:{
+            id: id
+        }
+    });
+    revalidatePath('/estudiantes');
+}
