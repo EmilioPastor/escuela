@@ -1,35 +1,38 @@
-import { PrismaClient } from "@prisma/client";
-import { Suspense } from "react";
+import{PrismaClient} from '@prisma/client';
+import { Suspense } from 'react';
 
 const prisma = new PrismaClient();
 
-async function PaginaGrupo({ params }) {
-    const { id } = await params;
 
+async function PaginaGrupo({params}) {
+    const {id}=await params;
     return(
-        <Suspense fallback={"Obteniendo grupo.."}>
-            <Producto id={id}/>
-        </Suspense>
-    )
+        <div>
+            <h1>DATOS DE PRODUCTO</h1>
+            <Suspense fallback={"Obteniendo grupo con id: " + {id}  }>
+                <Producto id={id} />
+            </Suspense>
+        </div>
 
+    );
 
 }
 
 export default PaginaGrupo;
 
-async function Grupos({ id }) {
-    const grupo = await prisma.grupo.findUnique({
-        where: {
-            id: +parametros.id
+
+//--------------------------Componente de servidor------------------------------------
+async function Producto({id}) {
+    const grupo= await prisma.grupo.findUnique({
+        where:{
+            id: +id
         }
     });
-
-
-    return(
-        <div>
-            <p>Grupo: {grupo.nombre}</p>
-            <p>Tutor: {grupo.tutor}</p>
-            <p>Aula: {grupo.aula}</p>
-        </div>
-    );
+        return ( 
+            <div>
+                <p>{grupo.nombre}</p>
+                <p>{grupo.tutor}</p>
+                <p>{grupo.aula}</p>
+            </div>
+         );
 }
