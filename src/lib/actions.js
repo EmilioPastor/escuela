@@ -96,3 +96,46 @@ export async function eliminarEstudiante(formData){
     });
     revalidatePath('/estudiantes');
 }
+
+//--------------------------asignaturas------------------------------------
+
+export async function insertarAsignatura(formData){
+    const nombre = formData.get('nombre');
+    const profesor = formData.get('profesor');
+    const num_horas = formData.get('num_horas');
+    await prisma.asignatura.create({
+        data: {
+            nombre:nombre, 
+            profesor: profesor,
+            num_horas: num_horas
+        }
+    });
+    revalidatePath('/asignaturas');
+}
+
+export async function modificarAsignatura(formData){
+    const nombre = formData.get('nombre');
+    const profesor = formData.get('profesor');
+    const num_horas = formData.get('num_horas');
+    await prisma.asignatura.update({
+        where:{
+            id: id
+        },
+        data: {
+            nombre:nombre, 
+            profesor: profesor,
+            num_horas: num_horas
+        }
+    });
+    revalidatePath('/asignaturas');
+}
+
+export async function eliminarAsignatura(formData){
+    const id = Number(formData.get('id'))
+    await prisma.asignatura.delete({
+        where:{
+            id: id
+        }
+    });
+    revalidatePath('/asignaturas');
+}
