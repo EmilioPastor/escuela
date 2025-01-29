@@ -2,24 +2,24 @@
 
 import { useRef } from "react";
 
-function Modal({texto, children}) {
-    const refModal = useRef();
-    const openModal = () => refModal.current?.showModal();
-    const closeModal = () => refModal.current?.close();
+function Modal({ openElement, children }) {
+    const refModal = useRef()
 
+    const openModal = () => refModal.current?.showModal()
+    const closeModal = () => refModal.current?.close()
 
-
-    return ( 
+    return (
         <>
-        <div onClick={openModal}>{texto}</div>
-        <dialog ref={refModal}>
-            
-           {children}
+            <div onClick={openModal} > {openElement} </div >
 
-            <div onClick={closeModal} className="bg-red-500 text-white py-2 px-4 rounded">Cerrar</div>
-        </dialog>
+            <dialog ref={refModal} className="p-4" >
+
+                <div onClick={closeModal} className="text-right"> ❌ </div>
+
+                {children}
+            </dialog>
         </>
-     );
+    );
 }
 
 export default Modal;

@@ -1,36 +1,39 @@
-import { PrismaClient } from '@prisma/client';
-import { Suspense } from 'react';
+import Asignatura from "@/components/Asignaturas/Item";
+import { Suspense } from "react";
 
-const prisma = new PrismaClient();
 
-async function PaginaAsignatura({ params }) {
-    const { id } = await params;
+async function PaginaAsignatura({ params, searchParams }) {
+    const { id } = await params
+
     return (
-        <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-500 to-indigo-800 py-8">
-            <h1 className="text-4xl font-bold text-white mb-6">DATOS DE LA ASIGNATURA</h1>
-            <Suspense fallback={"Obteniendo asignatura con id: " + id}>
-                <AsignaturaServer id={id} />
+        <div>
+            <h1>DATOS DE ASIGNATURA</h1>
+            <Suspense fallback={
+                <p className="text-blue-500 text-2xl font-bold animate-pulse">
+                    Obteniendo datos...
+                </p>
+            }>
+                <Asignatura id={id} />
             </Suspense>
         </div>
-    );
+    )
+
 }
 
 export default PaginaAsignatura;
 
-//--------------------------Componente de servidor------------------------------------
-async function AsignaturaServer({ id }) {
-    const asignatura = await prisma.asignatura.findUnique({
-        where: {
-            id: +id
-        }
-    });
+function Skeleton() {
     return (
-        <div className="w-full max-w-4xl px-4 space-y-6">
-            <div className="border-2 border-blue-500 rounded-lg p-6 shadow-lg bg-white hover:shadow-2xl transition-shadow duration-300">
-                <h2 className="text-2xl font-semibold text-blue-600 mb-2">{asignatura.nombre}</h2>
-                <p className="text-md text-gray-700">Profesor: {asignatura.profesor}</p>
-                <p className="text-md text-gray-700">Número de horas: {asignatura.num_horas}</p>
+        <div className="flex w-full flex-col gap-4">
+            <div className="flex items-center gap-4">
+                <div className="skeleton h-16 w-16 shrink-0 rounded-full"></div>
+                <div className="flex flex-col gap-4">
+                    <div className="skeleton h-4 w-52"></div>
+                    <div className="skeleton h-4 w-80"></div>
+                </div>
             </div>
+            <div className="skeleton h-72 w-full"></div>
         </div>
-    );
+    )
+
 }
