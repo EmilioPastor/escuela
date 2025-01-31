@@ -1,3 +1,6 @@
+import { insertarEstudiante } from "@/lib/actions";
+import Modal from "../Modal";
+
 function EstudianteInsertar() {
     return (
         <Modal openElement={<p className="inline border-2 border-black">Insertar estudiante</p>}>

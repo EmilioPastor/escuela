@@ -1,3 +1,7 @@
+// NPX PRISMA DB PUSH -> CUALQUIER CAMBIO AQUI
+
+
+
 generator client {
     provider = "prisma-client-js"
 }
@@ -19,15 +23,15 @@ model Grupo {
 
     @@map("grupos")
 }
-
+// LOS QUE NO TIENEN "?" SON LOS QUE SE AÑADEN EN LA BBDD
 model Estudiante {
     id               Int          @id @default(autoincrement())
     nombre           String
     fecha_nacimiento DateTime
     foto             String?
     tutor_legal      String       @default("AMBOS PADRES")
-    grupoId          Int
-    grupo            Grupo        @relation(fields: [grupoId], references: [id])
+    grupoId          Int?
+    grupo            Grupo?        @relation(fields: [grupoId], references: [id])
     asignaturas      Asignatura[]
 
     @@map("estudiantes")

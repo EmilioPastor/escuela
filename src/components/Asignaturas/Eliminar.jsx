@@ -1,3 +1,6 @@
+import { eliminarAsignatura } from "@/lib/actions";
+import Modal from "../Modal";
+
 function AsignaturaEliminar({grupo}) {
     return (
         <Modal openElement={<p className="inline border-2 border-black">Eliminar</p>}>

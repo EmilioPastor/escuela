@@ -1,5 +1,3 @@
-import Modal from "@/components/Modal";
-import { eliminarGrupo, insertarGrupo, modificarGrupo } from "@/lib/actions";
 import { obtenerGrupos } from "@/lib/data";
 import GrupoInsertar from "./Insertar";
 import GrupoModificar from "./Modificar";

@@ -1,5 +1,3 @@
-import Modal from "@/components/Modal";
-import { eliminarAsignatura, insertarAsignatura, modificarAsignatura } from "@/lib/actions";
 import { obtenerAsignaturas } from "@/lib/data";
 import AsignaturaInsertar from "./Insertar";
 import AsignaturaModificar from "./Modificar";

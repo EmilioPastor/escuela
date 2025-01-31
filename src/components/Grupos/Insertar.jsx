@@ -1,3 +1,6 @@
+import { insertarGrupo } from "@/lib/actions";
+import Modal from "../Modal";
+
 function GrupoInsertar() {
     return (
 

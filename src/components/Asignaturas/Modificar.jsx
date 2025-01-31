@@ -1,3 +1,6 @@
+import { modificarAsignatura } from "@/lib/actions";
+import Modal from "../Modal";
+
 function AsignaturaModificar({ grupo }) {
     return (
         <Modal openElement={<p className="inline border-2 border-black">Modificar</p>}>

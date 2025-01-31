@@ -1,3 +1,6 @@
+import { eliminarGrupo } from "@/lib/actions";
+import Modal from "../Modal";
+
 function GruposEliminar({grupo}) {
     return (
         <Modal openElement={<p className="inline border-2 border-black">Eliminar</p>}>
